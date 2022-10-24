@@ -5,11 +5,11 @@ namespace SistemaGestion.Handlers
 {
     public class HandlerProductoVendido
     {
-        public static List<ProductoVendido> DevolverProductoVendido(int idVenta)
+        public static List<ProductoVendido> DevolverProductoVendido(int IdUsuario)
         {
             var listaProductoVendido = new List<ProductoVendido>();
 
-            var query = "SELECT P.Id, Descripciones, PV.Stock, IdVenta FROM Producto AS P INNER JOIN ProductoVendido AS PV ON P.Id = PV.IdProducto WHERE IdVenta = @idVenta ";
+            var query = "SELECT P.Id, Descripciones, PV.Stock, IdVenta FROM Producto AS P INNER JOIN ProductoVendido AS PV ON P.Id = PV.IdProducto WHERE IdUsuario = @IdUsuario ";
 
             SqlConnectionStringBuilder connecctionbuilder = new();
             connecctionbuilder.DataSource = "NICO-PC\\SQLEXPRESS";
@@ -23,9 +23,9 @@ namespace SistemaGestion.Handlers
                 {
                     var parametro = new SqlParameter();
 
-                    parametro.ParameterName = "idVenta";
+                    parametro.ParameterName = "IdUsuario";
                     parametro.SqlDbType = System.Data.SqlDbType.Int;
-                    parametro.Value = idVenta;
+                    parametro.Value = IdUsuario;
                     comando.Parameters.Add(parametro);
 
                     connection.Open();
@@ -43,18 +43,6 @@ namespace SistemaGestion.Handlers
 
                                 listaProductoVendido.Add(ProductoVendido);
                             }
-                            Console.WriteLine("----- Productos Vendidos -----");
-
-                            foreach (var ProductoVendido in listaProductoVendido)
-                            {
-                                Console.WriteLine("Id Producto = " + ProductoVendido.Id);
-                                Console.WriteLine("Descripcion = " + ProductoVendido.Descripciones);
-                                Console.WriteLine("Stock = " + ProductoVendido.Stock);
-                                Console.WriteLine("Id de Venta = " + ProductoVendido.IdVenta);
-                                Console.WriteLine("---------------");
-                            }
-                            Console.WriteLine("Fin de Lista Productos Vendidos");
-
                             dr.Close();
                         }
                     }

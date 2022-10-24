@@ -42,17 +42,6 @@ namespace SistemaGestion.Handlers
 
                                 listaVenta.Add(Venta);
                             }
-                            Console.WriteLine("----- Ventas -----");
-
-                            foreach (var Venta in listaVenta)
-                            {
-                                Console.WriteLine("Id = " + Venta.Id);
-                                Console.WriteLine("Comentarios = " + Venta.Comentarios);
-                                Console.WriteLine("IdUsuario = " + Venta.IdUsuario);
-                                Console.WriteLine("---------------");
-                            }
-                            Console.WriteLine("Fin de Lista Venta");
-
                             dr.Close();
                         }
                     }

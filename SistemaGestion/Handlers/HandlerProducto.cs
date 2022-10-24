@@ -47,20 +47,6 @@ namespace SistemaGestion.Handlers
 
                                 listaProductos.Add(producto);
                             }
-                            Console.WriteLine("----- Productos -----");
-                            
-                            foreach (var Producto in listaProductos)
-                            {
-                                Console.WriteLine("Id = " + Producto.Id);
-                                Console.WriteLine("Descripciones = " + Producto.Descripciones);
-                                Console.WriteLine("Costo = " + Producto.Costo);
-                                Console.WriteLine("PrecioVenta = " + Producto.PrecioVenta);
-                                Console.WriteLine("Stock = " + Producto.Stock);
-                                Console.WriteLine("IdUsuario = " + Producto.IdUsuario);
-                                Console.WriteLine("---------------");
-                            }
-                            Console.WriteLine("Fin de Lista Productos");
-
                             dr.Close();
                         }
                     }

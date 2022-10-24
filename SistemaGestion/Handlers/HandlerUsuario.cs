@@ -4,9 +4,9 @@ using SistemaGestion.Models;
 
 public class HandlerUsuario
 {
-    public static List<Usuario> DevolverUsuario(string nombreUsuario)
+    public static Usuario DevolverUsuario(string nombreUsuario)
     {
-        var listaUsuarios = new List<Usuario>();
+        var UsuarioDevuelto = new Usuario();
 
         var query = "SELECT Id,Nombre,Apellido,NombreUsuario,Contraseña,Mail FROM Usuario WHERE NombreUsuario = @NombreUsuario";
 
@@ -40,44 +40,22 @@ public class HandlerUsuario
                             usuario.NombreUsuario = dr["NombreUsuario"].ToString();
                             usuario.Contraseña = dr["Contraseña"].ToString();
                             usuario.Mail = dr["Mail"].ToString();
-
-                            listaUsuarios.Add(usuario);
-
                         }
-
-                        Console.WriteLine("----- Datos Usuario -----");
-                        foreach (var usuario in listaUsuarios)
-                        {
-                            Console.WriteLine("Id = " + usuario.Id);
-                            Console.WriteLine("Nombre = " + usuario.Nombre);
-                            Console.WriteLine("Apellido = " + usuario.Apellido);
-                            Console.WriteLine("Nombre de usuario = " + usuario.NombreUsuario);
-                            Console.WriteLine("Contraseña = " + usuario.Contraseña);
-                            Console.WriteLine("Mail = " + usuario.Mail);
-                            
-                            Console.WriteLine("---------------");
-
-                        }
-
                         dr.Close();
-                    }
-                    else
-                    {
-                        Console.WriteLine("El Usuario no fue encontrado");
                     }
 
                 }
             }
         }
 
-        return listaUsuarios;
+        return UsuarioDevuelto;
 
 
 
     }
-    public static List<Usuario> InicioSesion(string nombreUsuario, string Contraseña)
+    public static Usuario InicioSesion(string nombreUsuario, string Contraseña)
     {
-        var listaUsuarios = new List<Usuario>();
+        var UsuarioIniciado = new Usuario();
 
         var query = "SELECT Id,Nombre,Apellido,NombreUsuario,Contraseña,Mail FROM Usuario WHERE NombreUsuario = @NombreUsuario AND Contraseña = @Contraseña";
 
@@ -117,37 +95,15 @@ public class HandlerUsuario
                             usuario.NombreUsuario = dr["NombreUsuario"].ToString();
                             usuario.Contraseña = dr["Contraseña"].ToString();
                             usuario.Mail = dr["Mail"].ToString();
-
-                            listaUsuarios.Add(usuario);
-
                         }
-
-                        Console.WriteLine("----- Datos Usuario -----");
-                        foreach (var usuario in listaUsuarios)
-                        {
-                            Console.WriteLine("Id = " + usuario.Id);
-                            Console.WriteLine("Nombre = " + usuario.Nombre);
-                            Console.WriteLine("Apellido = " + usuario.Apellido);
-                            Console.WriteLine("Nombre de usuario = " + usuario.NombreUsuario);
-                            Console.WriteLine("Contraseña = " + usuario.Contraseña);
-                            Console.WriteLine("Mail = " + usuario.Mail);
-
-                            Console.WriteLine("---------------");
-
-                        }
-
                         dr.Close();
-                    }
-                    else
-                    {
-                        Console.WriteLine("El Usuario o la contraseña son incorrectas");
                     }
 
                 }
             }
         }
 
-        return listaUsuarios;
+        return UsuarioIniciado;
 
 
 
